@@ -1,6 +1,6 @@
 import register from 'preact-custom-element';
-import NihReporterTable from './components/nih-reporter-table';
+import ReporterComponent from './reporter-component';
 
-register(NihReporterTable, 'nih-reporter-table', [], {
+register(ReporterComponent, 'nih-reporter-table', [], {
 	shadow: false,
 });

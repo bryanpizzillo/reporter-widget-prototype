@@ -1,6 +1,16 @@
 import axios from 'axios';
+import ReporterSearchQuery from './reporter-search-query';
+import ReporterSearchResults from './reporter-search-results';
 
-export default async function dataFetcher(query) {
+/**
+ * Fetches a set of search results from the Reporter API
+ *
+ * @param query The search Query
+ * @returns Results
+ */
+export default async function getReporterSearchResults(
+	query: ReporterSearchQuery
+): Promise<ReporterSearchResults> {
 	console.log(query);
 	try {
 		const res = await axios.post(

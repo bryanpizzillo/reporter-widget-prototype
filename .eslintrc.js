@@ -7,8 +7,9 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
-//		'plugin:react/recommended',
-//		'plugin:react-hooks/recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:react/recommended',
+		'plugin:react-hooks/recommended',
 //		'plugin:jsx-a11y/recommended',
 //		'plugin:jest/recommended',
 //		'plugin:jest/style',
@@ -17,12 +18,12 @@ module.exports = {
 	],
 	settings: {
 		react: {
+			pragma: "h",
 			version: 'detect',
 		},
 	},
-	parser: '@babel/eslint-parser',
+	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		ecmaVersion: 2016,
 		sourceType: 'module',
 		ecmaFeatures: {
 			jsx: true,
@@ -30,7 +31,9 @@ module.exports = {
 	},
 	// Plugins are configured by the recommended extensions above
 	rules: {
-		// 'react/display-name': 'off',
+		// We have TypeScript checking, and Preact does not have prop-types
+		'react/prop-types': 'off',
+		'react/react-in-jsx-scope': 'off',
 		// 'react-hooks/exhaustive-deps': 'off',
 		// 'jest/consistent-test-it': ['error', { fn: 'it' }],
 		// 'jest/no-if': 'error',
