@@ -1,4 +1,4 @@
-import { ReporterSearchResults } from '../services/reporter-search';
+import { ReporterSearchResults, ReporterSearchCriteria } from '../services/reporter-search';
 
 /**
  * Defines the actions available for the store reducer.
@@ -6,7 +6,8 @@ import { ReporterSearchResults } from '../services/reporter-search';
 export enum ActionType {
 	FETCH_SUCCSESSFUL = 'fetch/successful',
 	FETCH_FAILED = 'fetch/failed',
-	PAGENUM_CHANGED = 'pagenum/changed',
+	PAGENUM_CHANGED = 'query/pagenum_changed',
+	CRITERIA_CHANGED = 'query/criteria_changed',
 }
 
 /**
@@ -75,9 +76,32 @@ export const updatePageNumber = (pageNum: number): UpdatePageNumAction => {
 };
 
 /**
+ * Represents an Action for updating the query in the story to change pagenum.
+ */
+ export interface UpdateCriteriaAction {
+	readonly type: ActionType.CRITERIA_CHANGED;
+	criteria: ReporterSearchCriteria;
+}
+
+/**
+ * Gets an action for updating the query in the story to change criteria.
+ *
+ * @param criteria The new criteria
+ * @returns UpdateCriteriaAction
+ */
+export const updateCriteria = (criteria: ReporterSearchCriteria): UpdateCriteriaAction => {
+	return {
+		type: ActionType.CRITERIA_CHANGED,
+		criteria,
+	};
+};
+
+
+/**
  * Type union for
  */
 export type StoreAction =
 	| SuccessfulFetchAction
 	| FailedFetchAction
-	| UpdatePageNumAction;
+	| UpdatePageNumAction
+	| UpdateCriteriaAction;

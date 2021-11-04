@@ -6,7 +6,10 @@ import {
 	initialState,
 } from './store';
 import { getReporterSearchResults } from './services/reporter-search';
+import { getReporterSearchCriteria } from './services/reporter-search-criteria';
+
 import { NihReporterTable } from './components';
+import { updateCriteria } from './store/actions';
 
 enum DisplayModes {
 	Table = 'table',
@@ -34,17 +37,31 @@ export default function ReporterComponentById({
 		...initialState,
 		query: {
 			...initialState.query,
-			criteria: {
-				foa: [],
-				fiscal_years: [],
-				award_types: [],
-			},
+			criteria: null,
 		},
 	});
+
+		// This effect fetches the search criteria from the search criteria endpoint
+	// then updates the criteria. (Which in turn should trigger the next effect
+	// to fire)
+	useEffect(() => {
+		getReporterSearchCriteria(searchid)
+		.then((criteria) => {
+			dispatch(updateCriteria(criteria));
+			console.log(criteria);
+		})
+		.catch((err) => {
+			dispatch(setFetchFailed(err));
+		});
+	}, []);
 
 	// This effect handles fetching results from the API, and updating the store with
 	// successful results, or an error if it failed.
 	useEffect(() => {
+		if (state.query.criteria === null) {
+			return;
+		}
+
 		getReporterSearchResults(state.query)
 			.then((results) => {
 				dispatch(setFetchSuccess(results));

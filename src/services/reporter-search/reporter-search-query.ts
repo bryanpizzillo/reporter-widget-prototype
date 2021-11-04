@@ -3,11 +3,11 @@
  */
 export interface ReporterSearchCriteria {
 	/** One or more fiscal years to retrieve projects that correspond to (or started in) one of the fiscal years entered. */
-	fiscal_years?: Array<number>;
+	fiscal_years: Array<number> | null;
 	/** One or more foa to retrieve associated projects for. */
-	foa?: Array<string>;
+	foa: Array<string> | null;
 	/** One or more  award types to retrieve all projects associated with any of the award types passed. */
-	award_types?: Array<string>;
+	award_types: Array<string> |  null;
 }
 
 /**
@@ -17,7 +17,7 @@ export interface ReporterSearchCriteria {
  */
 export default interface ReporterSearchQuery {
 	/** The search criteria */
-	criteria: ReporterSearchCriteria;
+	criteria: ReporterSearchCriteria | null;
 	/** The number to start the search results at */
 	offset: number;
 	/** The number of results to fetch */

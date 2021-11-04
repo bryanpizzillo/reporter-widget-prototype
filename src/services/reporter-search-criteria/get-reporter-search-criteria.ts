@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ReporterSearchCriteria } from '../reporter-search';
+import transformSearchCriteria from './transform-search-criteria';
 
 /**
  * Fetches a set of search results from the Reporter API
@@ -7,7 +8,7 @@ import { ReporterSearchCriteria } from '../reporter-search';
  * @param query The search Query
  * @returns Results
  */
-export default async function getReporterSearchResults(
+export default async function getReporterSearchCriteria(
 	searchId: string
 ): Promise<ReporterSearchCriteria> {
 	try {
@@ -27,8 +28,9 @@ export default async function getReporterSearchResults(
 		);
 
 		if (res.status === 200) {
-			// Now we need to transform the response into a
-			return res.data;
+			// Now we need to transform the response into a search criteria
+			const criteria = transformSearchCriteria(res.data);
+			return criteria;
 		} else {
 			throw new Error(`Unexpected status ${res.status} for fetching ids`);
 		}

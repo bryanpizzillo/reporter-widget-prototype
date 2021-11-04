@@ -90,6 +90,15 @@ export default function reducer(
 				},
 			};
 		}
+		case ActionType.CRITERIA_CHANGED: {
+			return {
+				...state,
+				query: {
+					...state.query,
+					criteria: action.criteria,
+				},
+			};
+		}
 		default:
 			return state;
 	}
