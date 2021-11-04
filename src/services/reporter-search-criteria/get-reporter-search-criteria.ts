@@ -12,7 +12,7 @@ export default async function getReporterSearchResults(
 ): Promise<ReporterSearchCriteria> {
 	try {
 		//const host = 'https://reporter.nih.gov';
-		const host = 'https://localhost:8080';
+		const host = 'http://localhost:8080';
 
 		const res = await axios.get(
 			`${host}/services/Projects/SearchCriteria?searchid=${searchId}`,

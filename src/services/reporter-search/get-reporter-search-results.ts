@@ -13,7 +13,7 @@ export default async function getReporterSearchResults(
 ): Promise<ReporterSearchResults> {
 	console.log(query);
 	//const host = 'https://reporterproxy-dev.cancer.gov';
-	const host = 'https://localhost:8080';
+	const host = 'http://localhost:8080';
 
 	try {
 		const res = await axios.post(`${host}/v2/projects/search`, query, {
