@@ -4,6 +4,8 @@ const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 const paths = require('./paths')
 
+const { reporterProxy, searchCriteriaProxy } = require('../support/proxy');
+
 module.exports = merge(common, {
   // Set the mode to development or production
   mode: 'development',
@@ -19,6 +21,14 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 8080,
+		proxy: {
+			'/v2/projects/search': {
+				bypass: reporterProxy
+			},
+			'/services/Projects/SearchCriteria': {
+				bypass: searchCriteriaProxy
+			}
+		}
   },
 
   module: {

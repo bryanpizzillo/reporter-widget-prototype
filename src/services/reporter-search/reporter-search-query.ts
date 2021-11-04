@@ -1,13 +1,13 @@
 /**
  * Defines Reporter Search Criteria
  */
-interface ReporterSearchCriteria {
+export interface ReporterSearchCriteria {
 	/** One or more fiscal years to retrieve projects that correspond to (or started in) one of the fiscal years entered. */
-	fiscal_years: Array<number>;
+	fiscal_years?: Array<number>;
 	/** One or more foa to retrieve associated projects for. */
-	foa: Array<string>;
+	foa?: Array<string>;
 	/** One or more  award types to retrieve all projects associated with any of the award types passed. */
-	award_types: Array<string>;
+	award_types?: Array<string>;
 }
 
 /**

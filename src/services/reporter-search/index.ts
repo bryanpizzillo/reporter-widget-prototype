@@ -1,4 +1,4 @@
-export { default as ReporterSearchQuery } from './reporter-search-query';
+export { default as ReporterSearchQuery, ReporterSearchCriteria } from './reporter-search-query';
 export {
 	default as ReporterSearchResults,
 	ReporterSearchResult,

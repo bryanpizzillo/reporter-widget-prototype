@@ -10,7 +10,7 @@ type ResultsTableProps = {
 
 export default function ResultsTable({ results }: ResultsTableProps) {
 	return (
-		<table className="table-default complex-table">
+		<table className="usa-table">
 			<thead>
 				<tr>
 					{/* Handle header click, or find preact/react table? */}
