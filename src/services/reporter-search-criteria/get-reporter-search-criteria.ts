@@ -11,8 +11,11 @@ export default async function getReporterSearchResults(
 	searchId: string
 ): Promise<ReporterSearchCriteria> {
 	try {
+		//const host = 'https://reporter.nih.gov';
+		const host = 'https://localhost:8080';
+
 		const res = await axios.get(
-			`https://reporter.nih.gov/services/Projects/SearchCriteria?searchid=${searchId}`,
+			`${host}/services/Projects/SearchCriteria?searchid=${searchId}`,
 			{
 				responseType: 'json',
 				headers: {

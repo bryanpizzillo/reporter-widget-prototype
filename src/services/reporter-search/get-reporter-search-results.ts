@@ -12,19 +12,18 @@ export default async function getReporterSearchResults(
 	query: ReporterSearchQuery
 ): Promise<ReporterSearchResults> {
 	console.log(query);
+	//const host = 'https://reporterproxy-dev.cancer.gov';
+	const host = 'https://localhost:8080';
+
 	try {
-		const res = await axios.post(
-			'https://reporterproxy-dev.cancer.gov/v2/projects/search',
-			query,
-			{
-				responseType: 'json',
-				headers: {
-					'Content-Type': 'application/json',
-					accept: '*/*',
-				},
-				transitional: { silentJSONParsing: false },
-			}
-		);
+		const res = await axios.post(`${host}/v2/projects/search`, query, {
+			responseType: 'json',
+			headers: {
+				'Content-Type': 'application/json',
+				accept: '*/*',
+			},
+			transitional: { silentJSONParsing: false },
+		});
 
 		if (res.status === 200) {
 			return res.data;
